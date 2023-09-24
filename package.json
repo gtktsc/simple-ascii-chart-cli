@@ -1,7 +1,7 @@
 {
   "name": "simple-ascii-chart-cli",
   "version": "1.0.0",
-  "description": "Simple ascii chart generator",
+  "description": "Simple ascii chart generator CLI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
@@ -47,18 +47,19 @@
     "ascii",
     "js",
     "ts",
+    "cli",
     "chart"
   ],
   "author": "gtktsc",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gtktsc/ascii-chart.git"
+    "url": "git+https://github.com/gtktsc/simple-ascii-chart-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/gtktsc/ascii-chart/issues"
+    "url": "https://github.com/gtktsc/simple-ascii-chart-cli/issues"
   },
-  "homepage": "https://github.com/gtktsc/ascii-chart#readme",
+  "homepage": "https://github.com/gtktsc/simple-ascii-chart-cli#readme",
   "files": [
     "dist/**/*"
   ],
