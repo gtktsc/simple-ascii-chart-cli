@@ -3,7 +3,7 @@ import { exec } from 'child_process';
 describe('plotter script', () => {
   // @ts-expect-error tests
   const execPlotterScript = (args, callback) => {
-    exec(`node dist/cli.js ${args}`, callback);
+    exec(`node node_modules/simple-ascii-chart/dist/cli.js ${args}`, callback);
   };
 
   it('should require the --input option', (done) => {
