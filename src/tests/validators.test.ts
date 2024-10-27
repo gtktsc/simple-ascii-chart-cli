@@ -95,7 +95,21 @@ describe('Utility Functions Tests', () => {
     it('returns a valid LineFormatter function for correct string input', () => {
       const lineFormatterStr = '(args) => ({ x: args.x, y: args.y, symbol: "*" })';
       const lineFormatter = validateLineFormatter(lineFormatterStr);
-      expect(lineFormatter!({ x: 1, y: 2, plotX: 1, plotY: 2, input: [], index: 0 })).toEqual({
+      expect(
+        lineFormatter!({
+          x: 1,
+          y: 2,
+          plotX: 1,
+          plotY: 2,
+          input: [],
+          index: 0,
+          minX: 0,
+          minY: 0,
+          expansionX: [0, 0],
+          expansionY: [0, 0],
+          toPlotCoordinates: () => [0, 0],
+        }),
+      ).toEqual({
         x: 1,
         y: 2,
         symbol: '*',
