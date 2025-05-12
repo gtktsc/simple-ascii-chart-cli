@@ -15,7 +15,7 @@
     "test:watch": "jest --watch",
     "build": "tsc -p tsconfig.build.json",
     "build:watch": "tsc -p tsconfig.build.json -w",
-    "prepare": "npm test && npm run lint && npm run build"
+    "prepare": "npm run lint && npm run build && npm test"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
