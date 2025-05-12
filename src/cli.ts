@@ -3,7 +3,7 @@
 // Import necessary modules and types
 import * as yargs from 'yargs';
 import plot from 'simple-ascii-chart';
-import { MultiLine, Settings } from 'simple-ascii-chart/dist/types';
+import { MultiLine, Settings } from 'simple-ascii-chart';
 import {
   validateFormatter,
   validateLineFormatter,

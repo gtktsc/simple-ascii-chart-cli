@@ -1,13 +1,17 @@
 import { exec } from 'child_process';
+import path from 'path';
+
+const cliPath = path.resolve(__dirname, '../../dist/cli.js'); // <-- LOCAL build output
+
+function execPlotterScript(
+  args: string,
+  callback: (error: Error | null, stdout: string, stderr: string) => void,
+) {
+  exec(`node ${cliPath} ${args}`, callback);
+}
 
 describe('plotter script', () => {
-  // @ts-expect-error tests
-  const execPlotterScript = (args, callback) => {
-    exec(`node node_modules/simple-ascii-chart/dist/cli.js ${args}`, callback);
-  };
-
   it('should require the --input option', (done) => {
-    // @ts-expect-error tests
     execPlotterScript('', (error, stdout, stderr) => {
       expect(stderr).toContain('Missing required argument: input');
       done();
@@ -20,7 +24,7 @@ describe('plotter script', () => {
       [2, 2],
       [3, 3],
     ]);
-    // @ts-expect-error tests
+
     execPlotterScript(`--input '${validInput}'`, (error, stdout, stderr) => {
       expect(error).toBeNull();
       expect(stderr).toBe('');
@@ -38,7 +42,7 @@ describe('plotter script', () => {
 
   it('should handle invalid JSON input gracefully', (done) => {
     const invalidInput = '[ invalid json';
-    // @ts-expect-error tests
+
     execPlotterScript(`--input '${invalidInput}'`, (error, stdout, stderr) => {
       expect(stderr).toContain('Oops! Something went wrong!');
       done();

@@ -8,7 +8,7 @@ import {
   MaybePoint,
   Symbols,
   Threshold,
-} from 'simple-ascii-chart/dist/types';
+} from 'simple-ascii-chart';
 
 // Prepares parameters by parsing JSON inputs and merging with optional settings
 // Define ANSI color types for validation

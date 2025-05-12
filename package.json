@@ -1,6 +1,6 @@
 {
   "name": "simple-ascii-chart-cli",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Simple ascii chart generator CLI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,17 +19,17 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.8.1",
-    "@typescript-eslint/eslint-plugin": "^8.11.0",
-    "@typescript-eslint/parser": "^8.11.0",
-    "eslint": "^9.13.0",
-    "eslint-config-prettier": "^9.1.0",
+    "@types/node": "^22.15.17",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.31.0",
     "jest": "^29.7.0",
-    "prettier": "^3.3.3",
-    "ts-jest": "^29.2.5",
-    "tsc-watch": "^6.2.0",
-    "typescript": "^5.6.3"
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.3.2",
+    "tsc-watch": "^6.2.1",
+    "typescript": "^5.8.3"
   },
   "keywords": [
     "ascii",
@@ -52,7 +52,7 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "simple-ascii-chart": "^4.2.0",
+    "simple-ascii-chart": "^5.0.0",
     "yargs": "^17.7.2"
   }
 }
