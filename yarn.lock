@@ -3663,10 +3663,10 @@ signal-exit@^3.0.3, signal-exit@^3.0.7:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.7.tgz#a9a1767f8af84155114eaabd73f99273c8f59ad9"
   integrity sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
 
-simple-ascii-chart@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/simple-ascii-chart/-/simple-ascii-chart-5.1.0.tgz#496a2b7a8a2f146a7a3e9309e86602a8c91b9609"
-  integrity sha512-4es8skTegTdnA6px2s97Zkv0k/Ra3+oaEHHx27wnt+HhDUu83Hl7YfiRZUTxE3XF+ClWgnpO6FYsw8QejKX5SQ==
+simple-ascii-chart@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/simple-ascii-chart/-/simple-ascii-chart-5.2.0.tgz#3f323d1023a076f7421536cd2c854e930fc3aa41"
+  integrity sha512-U7bAeTtg8EZ4Pf+6FIdHYmhlpupHTLBaHb29cDE5W3se4oCb/1POtKaHHyYYr8aTJvf4hlRq6ya0tFyvMnEzsQ==
 
 sisteransi@^1.0.5:
   version "1.0.5"

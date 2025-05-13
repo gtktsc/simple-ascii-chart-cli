@@ -38,13 +38,9 @@ const { argv } = yargs
     type: 'boolean',
     description: 'Hide the x-axis if set to true',
   })
-  .option('barChart', {
-    type: 'boolean',
-    description: 'Draw bar chart if set to true',
-  })
-  .option('horizontalBarChart', {
-    type: 'boolean',
-    description: 'Draw horizontal bar chart if set to true',
+  .option('mode', {
+    type: 'string',
+    description: 'Sets mode for the plot (e.g., "line", "bar", "horizontalBar", "point")',
   })
   .option('hideYAxis', {
     type: 'boolean',
@@ -157,8 +153,7 @@ const prepareParams = ({
   formatter,
   lineFormatter,
   symbols,
-  barChart,
-  horizontalBarChart,
+  mode,
 }: {
   input: string;
   options?: string;
@@ -180,8 +175,7 @@ const prepareParams = ({
   formatter?: string;
   lineFormatter?: string;
   symbols?: string;
-  barChart?: boolean;
-  horizontalBarChart?: boolean;
+  mode?: string;
 }) => {
   const currentOptions = options ? JSON.parse(options) : {};
 
@@ -197,8 +191,7 @@ const prepareParams = ({
       xLabel,
       yLabel,
       fillArea,
-      barChart,
-      horizontalBarChart,
+      mode,
       color: color ? validateColors(color) : undefined, // Ensure color matches Colors type
       axisCenter: validateAxisCenter(axisCenter), // Validate and format axisCenter
       yRange: validateYRange(yRange), // Validate and format yRange

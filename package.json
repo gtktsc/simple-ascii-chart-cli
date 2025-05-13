@@ -1,6 +1,6 @@
 {
   "name": "simple-ascii-chart-cli",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Simple ascii chart generator CLI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -52,7 +52,7 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "simple-ascii-chart": "^5.1.0",
+    "simple-ascii-chart": "^5.2.0",
     "yargs": "^17.7.2"
   }
 }
