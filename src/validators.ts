@@ -3,6 +3,7 @@ import {
   Colors,
   CustomSymbol,
   Formatter,
+  GraphPoint,
   Legend,
   LineFormatterArgs,
   MaybePoint,
@@ -79,6 +80,27 @@ export const validateThresholds = (
       return undefined;
     })
     .filter((threshold): threshold is Threshold => threshold !== undefined);
+};
+
+// Helper function to validate and format thresholds as Threshold[]
+export const validatePoints = (
+  points: any[] | undefined, // Updated type to any[] | undefined
+): GraphPoint[] | undefined => {
+  if (!Array.isArray(points)) return undefined;
+
+  return points
+    .map((item) => {
+      if (typeof item === 'object' && item !== null) {
+        const point = item as any;
+        const x = point.x;
+        const y = point.y;
+        const color = typeof point.color === 'string' ? point.color : undefined;
+
+        return x !== undefined && y !== undefined ? ({ x, y, color } as GraphPoint) : undefined;
+      }
+      return undefined;
+    })
+    .filter((point): point is GraphPoint => point !== undefined);
 };
 
 // Helper function to validate and parse legend as Legend

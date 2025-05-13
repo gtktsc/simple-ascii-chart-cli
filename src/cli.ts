@@ -13,6 +13,7 @@ import {
   validateLegend,
   validateThresholds,
   validateYRange,
+  validatePoints,
 } from './validators';
 
 // Define command-line arguments with yargs
@@ -90,7 +91,11 @@ const { argv } = yargs
   })
   .option('thresholds', {
     type: 'array',
-    description: 'Array of threshold points or lines with optional color',
+    description: 'Array of threshold lines with optional color',
+  })
+  .option('points', {
+    type: 'array',
+    description: 'Array of points with optional color',
   })
   .option('legend', {
     type: 'string',
@@ -147,6 +152,7 @@ const prepareParams = ({
   yRange,
   showTickLabel,
   thresholds,
+  points,
   legend,
   formatter,
   lineFormatter,
@@ -169,6 +175,7 @@ const prepareParams = ({
   yRange?: (string | number)[];
   showTickLabel?: boolean;
   thresholds?: (string | number)[];
+  points?: (string | number)[];
   legend?: string;
   formatter?: string;
   lineFormatter?: string;
@@ -197,6 +204,7 @@ const prepareParams = ({
       yRange: validateYRange(yRange), // Validate and format yRange
       showTickLabel,
       thresholds: validateThresholds(thresholds), // Validate and format thresholds
+      points: validatePoints(points), // Validate and format thresholds
       legend: validateLegend(legend), // Validate and format legend
       formatter: validateFormatter(formatter), // Parse formatter as a function
       lineFormatter: validateLineFormatter(lineFormatter), // Parse lineFormatter as a function
