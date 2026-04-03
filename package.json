@@ -1,19 +1,20 @@
 {
   "name": "simple-ascii-chart-cli",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Simple ascii chart generator CLI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "simple-ascii-chart": "dist/cli.js"
+    "simple-ascii-chart": "dist/cli.js",
+    "simple-ascii-chart-cli": "dist/cli.js"
   },
   "scripts": {
-    "start": "tsc-watch -p tsconfig.json --preserveWatchOutput -w --onSuccess 'node ./dist/index.js'",
+    "start": "tsc-watch -p tsconfig.json --preserveWatchOutput -w --onSuccess 'node ./dist/cli.js --help'",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
     "build:watch": "tsc -p tsconfig.build.json -w",
     "prepare": "npm run lint && npm run build && npm test"
   },

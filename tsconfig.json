@@ -3,11 +3,14 @@
     "rootDir": "src",
     "outDir": "dist",
     "allowJs": true,
-    "esModuleInterop": true, 
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
     "declaration": true,
     "strict": true,
     "downlevelIteration": true,
+    "skipLibCheck": true,
+    "target": "esnext"
   },
-  "include": ["./src"],
-  "target": "esnext",
+  "include": ["./src"]
 }
