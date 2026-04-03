@@ -33,7 +33,7 @@ npm install -g simple-ascii-chart-cli
 Or add it as a project dependency:
 
 ```bash
-yarn add simple-ascii-chart
+yarn add simple-ascii-chart-cli
 ```
 
 Then use it in your project:
@@ -68,32 +68,111 @@ https://simple-ascii-chart.vercel.app/api?input=[[1,2],[2,3],[3,4]]&settings={"w
 Run the CLI by passing your data and desired options:
 
 ```bash
-simple-ascii-chart-cli --input '[[1, 2], [2, 3], [3, 4]]' --title "Sample Chart"
+simple-ascii-chart --input '[[1, 2], [2, 3], [3, 4]]' --title "Sample Chart"
 ```
+
+Compatibility alias: `simple-ascii-chart-cli` is also available.
 
 ### CLI Options
 
-| Option          | Alias | Type     | Description                                                                                     |
-|-----------------|-------|----------|-------------------------------------------------------------------------------------------------|
-| `--input`       | `-i`  | string   | The data to be plotted (in JSON format). Required.                                              |
-| `--options`     | `-o`  | string   | Additional plot settings (in JSON format).                                                      |
-| `--width`       | `-w`  | number   | Width of the plot.                                                                              |
-| `--height`      | `-h`  | number   | Height of the plot.                                                                             |
-| `--title`       | `-t`  | string   | Title for the plot.                                                                             |
-| `--xLabel`      |       | string   | Label for the x-axis.                                                                           |
-| `--yLabel`      |       | string   | Label for the y-axis.                                                                           |
-| `--color`       | `-c`  | array    | Colors for plot elements, specified as ANSI color names.                                        |
-| `--axisCenter`  |       | array    | Coordinates for axis center alignment.                                                          |
-| `--yRange`      |       | array    | Y-axis range in the format `[min, max]`.                                                        |
-| `--showTickLabel`|      | boolean  | Show tick labels on the axis if set to true.                                                    |
-| `--thresholds`  |       | array    | Array of threshold points or lines with optional color.                                      |
-| `--legend`      |       | string   | Legend settings (position and series labels) in JSON format.                                    |
-| `--formatter`   |       | string   | Custom formatter function for axis values, as a JavaScript function string.                     |
-| `--lineFormatter`|      | string   | Function to customize line appearance, as a JavaScript function string.                         |
-| `--symbols`     |       | string   | Custom symbols for axis, chart, and background elements, in JSON format.                        |
-| `--fillArea`    |       | boolean  | Fills the plot area if set to true.                                                             |
-| `--hideXAxis`   |       | boolean  | Hides the x-axis if set to true.                                                                |
-| `--hideYAxis`   |       | boolean  | Hides the y-axis if set to true.                                                                |
+| Option            | Alias | Type     | Description                                                                                           |
+|-------------------|-------|----------|-------------------------------------------------------------------------------------------------------|
+| `--input`         | `-i`  | string   | Inline input payload (JSON by default).                                                               |
+| `--input-file`    |       | string   | Read static input from a file path.                                                                   |
+| `--format`        |       | string   | Static input format: `json`, `csv`, `tsv`, `space`. Auto-detected when omitted.                      |
+| `--delimiter`     |       | string   | Custom delimiter for delimited static input.                                                          |
+| `--header`        |       | boolean  | Treat first delimited row as a header row.                                                            |
+| `--x-col`         |       | string   | X selector for delimited input (1-based index or header name).                                        |
+| `--y-col`         |       | string   | Y selector for delimited input (1-based index or header name).                                        |
+| `--stream`        |       | boolean  | Enable streaming mode and read newline-delimited samples from stdin.                                  |
+| `--window`        |       | number   | Keep only the latest N stream samples. Default: `60`.                                                 |
+| `--refresh-ms`    |       | number   | Redraw throttle in milliseconds. Default: `200`.                                                      |
+| `--rate`          |       | boolean  | Treat streamed values as counters and plot per-second rates.                                          |
+| `--series`        |       | number   | Stream series count (`1` or `2`).                                                                     |
+| `--passthrough`   |       | boolean  | Forward streamed stdin lines to stdout while plotting.                                                 |
+| `--plot-output`   |       | string   | Plot destination stream: `stdout` or `stderr`.                                                        |
+| `--options`       | `-o`  | string   | Additional plot settings as JSON.                                                                     |
+| `--width`         | `-w`  | number   | Plot width.                                                                                           |
+| `--height`        | `-h`  | number   | Plot height.                                                                                          |
+| `--title`         | `-t`  | string   | Plot title.                                                                                           |
+| `--xLabel`        |       | string   | X axis label.                                                                                         |
+| `--yLabel`        |       | string   | Y axis label.                                                                                         |
+| `--mode`          |       | string   | Graph mode: `line`, `point`, `bar`, `horizontalBar`.                                                  |
+| `--color`         | `-c`  | array    | ANSI colors for plot elements.                                                                        |
+| `--axisCenter`    |       | array    | Axis center coordinates (`--axisCenter 0 0`).                                                         |
+| `--yRange`        |       | array    | Y range (`--yRange 0 100`).                                                                           |
+| `--showTickLabel` |       | boolean  | Show axis tick labels.                                                                                |
+| `--thresholds`    |       | array    | JSON object/array string or tokenized JSON objects (`'{"y":2}'`, `'[{"y":2}]'`, `'{"y":2}' '{"x":3}'`). |
+| `--points`        |       | array    | JSON object/array string or tokenized JSON objects (`'{"x":1,"y":2}'`, `'[{"x":1,"y":2}]'`).         |
+| `--legend`        |       | string   | Legend settings in JSON format.                                                                       |
+| `--formatter`     |       | string   | Axis formatter function string.                                                                       |
+| `--lineFormatter` |       | string   | Line formatter function string.                                                                       |
+| `--symbols`       |       | string   | Custom symbols in JSON format.                                                                        |
+| `--debugMode`     |       | boolean  | Enable chart engine debug mode.                                                                       |
+| `--fillArea`      |       | boolean  | Fill plot area.                                                                                       |
+| `--hideXAxis`     |       | boolean  | Hide the x axis.                                                                                      |
+| `--hideYAxis`     |       | boolean  | Hide the y axis.                                                                                      |
+| `--verbose`       |       | boolean  | Print stack/details for parse/runtime errors.                                                         |
+
+Static stdin example (no `--input` needed):
+
+```bash
+printf '1 1\n2 4\n3 9\n' | simple-ascii-chart --format space --title "stdin plot"
+```
+
+Threshold example:
+
+```bash
+simple-ascii-chart --input '[[1,1],[2,2],[3,3]]' --thresholds '{"y":2,"color":"ansiRed"}'
+```
+
+Points example:
+
+```bash
+simple-ascii-chart --input '[[1,1],[2,1],[3,1]]' --points '[{"x":2,"y":3,"color":"ansiGreen"}]'
+```
+
+Debug mode example:
+
+```bash
+simple-ascii-chart --input '[[1,1],[2,2],[3,3]]' --debugMode true
+```
+
+## Live CPU Chart
+
+Stream CPU samples directly into the chart.
+
+Input formats accepted by `--stream`:
+- `NUMBER` (x-axis uses sample time; default labels are elapsed like `+0s`, `+1s`)
+- `X,Y`
+
+macOS one-liner (`top`-based):
+
+```bash
+while true; do top -l 1 | awk -F'[, %]+' '/^CPU usage:/ {print $3+$6}'; sleep 1; done | simple-ascii-chart --stream --window 60 --height 10 --yRange 0 100 --title "CPU usage %"
+```
+
+Linux one-liner (`vmstat`-based):
+
+```bash
+vmstat 1 | awk 'NR>2 {print 100-$15}' | simple-ascii-chart --stream --window 60 --height 10 --yRange 0 100 --title "CPU usage %"
+```
+
+## Live Network Bandwidth Chart
+
+Stream network bandwidth (Mbps) into the chart.
+
+macOS one-liner (default interface, total rx+tx):
+
+```bash
+IFACE=$(route -n get default 2>/dev/null | awk '/interface:/{print $2}'); PREV=$(netstat -ib -I "$IFACE" | awk 'NR>1 {sum+=$7+$10} END {print sum}'); while true; do sleep 1; CUR=$(netstat -ib -I "$IFACE" | awk 'NR>1 {sum+=$7+$10} END {print sum}'); awk -v c="$CUR" -v p="$PREV" 'BEGIN {printf "%.2f\n", (c-p)*8/1000000}'; PREV="$CUR"; done | simple-ascii-chart --stream --window 60 --height 10 --yRange 0 1000 --title "Network Mbps (rx+tx)"
+```
+
+Linux one-liner (default interface, total rx+tx):
+
+```bash
+IFACE=$(ip route | awk '/default/ {print $5; exit}'); PREV_RX=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); PREV_TX=$(cat /sys/class/net/$IFACE/statistics/tx_bytes); while true; do sleep 1; CUR_RX=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); CUR_TX=$(cat /sys/class/net/$IFACE/statistics/tx_bytes); awk -v cr="$CUR_RX" -v pr="$PREV_RX" -v ct="$CUR_TX" -v pt="$PREV_TX" 'BEGIN {printf "%.2f\n", ((cr-pr)+(ct-pt))*8/1000000}'; PREV_RX="$CUR_RX"; PREV_TX="$CUR_TX"; done | simple-ascii-chart --stream --window 60 --height 10 --yRange 0 1000 --title "Network Mbps (rx+tx)"
+```
 
 ## API Reference
 
@@ -198,3 +277,9 @@ plot(
 This README includes various examples with plots for titles, multi-series data, axis labels, area filling, custom symbols, and more.
 
 For any questions or additional details, see the [documentation](https://simple-ascii-chart.vercel.app/).
+
+## Support
+
+If this project helps you, consider supporting my open-source work:
+
+[Buy me a coffee](https://buymeacoffee.com/gtktsc)

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plotter script keeps deterministic static output for snapshot regression checks 1`] = `
+"
+golden               
+ ▲                   
+5┤                ┏━ 
+ │                ┃  
+4┤     ┏━━━━┓     ┃  
+ │     ┃    ┃     ┃  
+ │     ┃    ┃     ┃  
+2┤     ┃    ┗━━━━━┛  
+ │     ┃             
+1┤━━━━━┛             
+ └┬─────┬────┬─────┬▶
+  1     2    3     4 
+"
+`;

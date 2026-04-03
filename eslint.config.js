@@ -1,5 +1,6 @@
 // eslint.config.js
 const typescript = require('@typescript-eslint/eslint-plugin');
+const typescriptParser = require('@typescript-eslint/parser');
 const importPlugin = require('eslint-plugin-import');
 const prettierConfig = require('eslint-config-prettier');
 
@@ -10,6 +11,7 @@ module.exports = [
   prettierConfig,
   {
     languageOptions: {
+      parser: typescriptParser,
       ecmaVersion: 2021,
       sourceType: 'module',
     },
@@ -21,11 +23,10 @@ module.exports = [
       'import/extensions': 'off',
       'no-param-reassign': 'off',
     },
-    files: ['*.ts', '*.js'],
+    files: ['**/*.{ts,js}'],
     settings: {
       jest: true,
       browser: true,
     },
   },
 ];
-
