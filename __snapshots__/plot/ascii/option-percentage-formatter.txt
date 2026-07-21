@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,0.1],[1,0.4],[2,0.25],[3,0.8]]' --width 36 --height 9 --renderer ascii --formatter '(value) => Math.round(value * 100) + "%"'
+exit code: 0
+stdout:
+
+   ▲                                     
+80%┤                                  ┏━ 
+   │                                  ┃  
+   │                                  ┃  
+   │                                  ┃  
+   │                                  ┃  
+40%┤           ┏━━━━━━━━━━┓           ┃  
+25%┤           ┃          ┗━━━━━━━━━━━┛  
+   │           ┃                         
+10%┤━━━━━━━━━━━┛                         
+   └┬───────────┬──────────┬───────────┬▶
+   0%        100%       200%        300% 
+
+stderr:
+<empty>

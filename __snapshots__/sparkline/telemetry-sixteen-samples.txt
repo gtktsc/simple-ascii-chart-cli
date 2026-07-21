@@ -1,0 +1,7 @@
+$ simple-ascii-chart --method sparkline --input '[3,7,4,9,6,12,8,5,11,14,9,13,10,16,12,15]'
+exit code: 0
+stdout:
+▁▃▁▄▂▆▄▂▅▇▄▇▅█▆█
+
+stderr:
+<empty>

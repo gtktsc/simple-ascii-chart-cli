@@ -1,0 +1,15 @@
+$ simple-ascii-chart --method plot --input '[[0,2],[1,5],[2,3],[3,7],[4,4]]' --renderer braille --width 20 --height 5
+exit code: 0
+stdout:
+
+ ▲                     
+7┤              ⡏⠉⠉⠉⠉⡇ 
+ │              ⡇    ⡇ 
+5┤    ⢸⠉⠉⠉⠉⢹    ⡇    ⣇ 
+3┤    ⢸    ⢸⣀⣀⣀⣀⡇      
+2┤⣀⣀⣀⣀⣸                
+ └┬────┬────┬───┬────┬▶
+  0    1    2   3    4 
+
+stderr:
+<empty>

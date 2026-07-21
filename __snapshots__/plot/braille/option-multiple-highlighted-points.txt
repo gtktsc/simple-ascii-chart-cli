@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,2],[1,5],[2,3],[3,8],[4,4]]' --width 36 --height 9 --renderer braille --points '[{"x":1,"y":6,"label":"first","color":"ansiCyan"},{"x":3,"y":9,"label":"second","color":"ansiMagenta"}]'
+exit code: 0
+stdout:
+
+ ▲                                     
+8┤                          ⡏⠉⠉⠉⠉⠉⠉⠉⠉⡇ 
+ │                          ⡇        ⡇ 
+ │                          ⡇        ⡇ 
+ │         \x1b[36m⠁\x1b[0m                ⡇        ⡇ 
+5┤        ⢰⠒⠒⠒⠒⠒⠒⠒⠒⢲        ⡇        ⡇ 
+4┤        ⢸        ⢸        ⡇        ⣇ 
+ │        ⢸        ⢸        ⡇          
+3┤        ⢸        ⠘⠒⠒⠒⠒⠒⠒⠒⠒⠃          
+2┤⣀⣀⣀⣀⣀⣀⣀⣀⣸                            
+ └┬────────┬────────┬───────┬────────┬▶
+  0        1        2       3        4 
+
+stderr:
+<empty>

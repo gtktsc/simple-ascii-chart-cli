@@ -1,0 +1,9 @@
+$ simple-ascii-chart --method heatmap --input '[[1,2]]' --options '{"title":"世界","rows":["東京"],"columns":["東","西"],"levels":[{"value":0,"symbol":"·","label":"none"},{"value":1,"symbol":"░","label":"low"},{"value":2,"symbol":"▓","label":"high"}]}'
+exit code: 0
+stdout:
+世界
+      東  西
+東京  ░   ▓
+
+stderr:
+<empty>

@@ -1,0 +1,7 @@
+$ simple-ascii-chart --method histogram --input '[0,1,2,3,4,5,6,7]'
+exit code: 0
+stdout:
+[[0.875,2],[2.625,2],[4.375,2],[6.125,2]]
+
+stderr:
+<empty>

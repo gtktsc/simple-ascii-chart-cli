@@ -1,0 +1,9 @@
+$ simple-ascii-chart --method heatmap --input '[[0,1,2]]' --options '{"levels":[{"value":0,"color":"ansiGreen"},{"value":1,"color":"ansiYellow"},{"value":2,"color":"ansiRed"}],"legend":true}'
+exit code: 0
+stdout:
+\x1b[32m█\x1b[0m  \x1b[33m█\x1b[0m  \x1b[31m█\x1b[0m
+
+\x1b[32m█\x1b[0m 0  \x1b[33m█\x1b[0m 1  \x1b[31m█\x1b[0m 2
+
+stderr:
+<empty>

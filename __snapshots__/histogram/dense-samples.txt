@@ -1,0 +1,7 @@
+$ simple-ascii-chart --method histogram --input '[1,1,1,2,2,3,3,3,3,4]' --options '{"binCount":4}'
+exit code: 0
+stdout:
+[[1.375,3],[2.125,2],[2.875,4],[3.625,1]]
+
+stderr:
+<empty>

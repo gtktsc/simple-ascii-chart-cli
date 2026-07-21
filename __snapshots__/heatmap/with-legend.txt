@@ -1,0 +1,10 @@
+$ simple-ascii-chart --method heatmap --input '[[0,1,2]]' --options '{"title":"Load","levels":[{"value":0,"symbol":"·","label":"none"},{"value":1,"symbol":"░","label":"low"},{"value":2,"symbol":"▓","label":"high"}],"legend":true}'
+exit code: 0
+stdout:
+Load
+·  ░  ▓
+
+· none  ░ low  ▓ high
+
+stderr:
+<empty>

@@ -1,0 +1,12 @@
+$ simple-ascii-chart --method heatmap --input '[[2,2,2],[2,1,0],[1,0,0]]' --options '{"rows":["admin","editor","viewer"],"columns":["read","write","delete"],"levels":[{"value":0,"symbol":"·","label":"clear"},{"value":1,"symbol":"▒","label":"watch"},{"value":2,"symbol":"█","label":"alert"}],"legend":true}'
+exit code: 0
+stdout:
+        read  write  delete
+admin    █      █      █
+editor   █      ▒      ·
+viewer   ▒      ·      ·
+
+· clear  ▒ watch  █ alert
+
+stderr:
+<empty>

@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,1],[1,4],[2,2],[3,7],[4,3]]' --width 36 --height 9 --renderer braille --overflow discard --x-axis '{"domain":[1,3]}'
+exit code: 0
+stdout:
+
+ ▲                                     
+7┤                                   ⡏ 
+ │                                   ⡇ 
+ │                                   ⡇ 
+ │                                   ⡇ 
+4┤⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⢲                 ⡇ 
+ │                 ⢸                 ⡇ 
+ │                 ⢸                 ⡇ 
+2┤                 ⠘⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠃ 
+ │                                     
+ └┬─────────────────┬────────────────┬▶
+  1                 2                3 
+
+stderr:
+<empty>

@@ -1,0 +1,18 @@
+$ simple-ascii-chart --method plot --input '[[0,2],[1,5],[2,3],[3,7],[4,4]]' --width 32 --height 8 --renderer braille --thresholds '{"y":4,"label":"target","color":"ansiRed"}'
+exit code: 0
+stdout:
+
+ ▲                                 
+7┤                       ⡏⠉⠉⠉⠉⠉⠉⠉⡇ 
+ │                       ⡇       ⡇ 
+ │                       ⡇       ⡇ 
+5┤       ⢸⠉⠉⠉⠉⠉⠉⠉⢹       ⡇       ⡇ 
+4┤\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣸\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣸\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣇\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣀\x1b[0m\x1b[31m⣇\x1b[0m 
+ │       ⢸       ⢸       ⡇         
+3┤       ⢸       ⠘⠒⠒⠒⠒⠒⠒⠒⠃         
+2┤⣀⣀⣀⣀⣀⣀⣀⣸                         
+ └┬───────┬───────┬──────┬───────┬▶
+  0       1       2      3       4 
+
+stderr:
+<empty>

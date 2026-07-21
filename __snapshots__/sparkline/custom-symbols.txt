@@ -1,0 +1,7 @@
+$ simple-ascii-chart --method sparkline --input '[0,null,7]' --options '{"symbols":{"empty":".","levels":["a","b","c","d","e","f","g","h"]}}'
+exit code: 0
+stdout:
+a.h
+
+stderr:
+<empty>

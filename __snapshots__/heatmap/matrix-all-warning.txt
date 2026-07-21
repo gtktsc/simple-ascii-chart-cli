@@ -1,0 +1,11 @@
+$ simple-ascii-chart --method heatmap --input '[[1,1,1],[1,1,1]]' --options '{"rows":["alpha","beta"],"columns":["one","two","three"],"levels":[{"value":0,"symbol":"·","label":"clear"},{"value":1,"symbol":"▒","label":"watch"},{"value":2,"symbol":"█","label":"alert"}],"legend":true}'
+exit code: 0
+stdout:
+       one  two  three
+alpha   ▒    ▒     ▒
+beta    ▒    ▒     ▒
+
+· clear  ▒ watch  █ alert
+
+stderr:
+<empty>

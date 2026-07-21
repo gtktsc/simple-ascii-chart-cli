@@ -21,7 +21,7 @@ describe('package metadata and publish artifacts', () => {
     fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'simple-ascii-chart-package-'));
     fixtureDistPath = path.join(fixtureRoot, 'dist');
 
-    execSync(`npx tsc -p tsconfig.build.json --outDir \"${fixtureDistPath}\"`, {
+    execSync(`npx tsc -p tsconfig.build.json --outDir "${fixtureDistPath}"`, {
       cwd: projectRootPath,
       stdio: 'pipe',
     });
@@ -36,6 +36,16 @@ describe('package metadata and publish artifacts', () => {
     if (fixtureRoot) {
       fs.rmSync(fixtureRoot, { recursive: true, force: true });
     }
+  });
+
+  it('uses simple-ascii-chart 6 without adding runtime dependencies', () => {
+    const packageJson = JSON.parse(
+      fs.readFileSync(path.join(projectRootPath, 'package.json'), 'utf8'),
+    ) as { dependencies: Record<string, string>; engines: { node: string } };
+
+    expect(packageJson.dependencies['simple-ascii-chart']).toBe('^6.0.0');
+    expect(Object.keys(packageJson.dependencies).sort()).toEqual(['simple-ascii-chart', 'yargs']);
+    expect(packageJson.engines.node).toBe('>=22');
   });
 
   it('declared entrypoints exist on disk', () => {
@@ -67,6 +77,7 @@ describe('package metadata and publish artifacts', () => {
 
     expect(helpText).toContain('--stream');
     expect(helpText).toContain('--input-file');
+    expect(helpText).toContain('--method');
   });
 
   it('does not include compiled test artifacts in npm pack output', () => {

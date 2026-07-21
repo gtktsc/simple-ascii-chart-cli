@@ -1,0 +1,7 @@
+$ simple-ascii-chart --method sparkline --input '[1,3,2,5]' --options '{"color":["ansiRed","ansiYellow","ansiCyan","ansiGreen"]}'
+exit code: 0
+stdout:
+\x1b[31m▁\x1b[0m\x1b[33m▅\x1b[0m\x1b[36m▃\x1b[0m\x1b[32m█\x1b[0m
+
+stderr:
+<empty>

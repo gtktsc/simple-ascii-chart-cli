@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,2],[1,5],[2,3],[3,7],[4,4]]' --width 32 --height 8 --renderer braille --title 'Release trend'
+exit code: 0
+stdout:
+
+Release trend                      
+ ▲                                 
+7┤                       ⡏⠉⠉⠉⠉⠉⠉⠉⡇ 
+ │                       ⡇       ⡇ 
+ │                       ⡇       ⡇ 
+5┤       ⢸⠉⠉⠉⠉⠉⠉⠉⢹       ⡇       ⡇ 
+4┤       ⢸       ⢸       ⡇       ⣇ 
+ │       ⢸       ⢸       ⡇         
+3┤       ⢸       ⠘⠒⠒⠒⠒⠒⠒⠒⠃         
+2┤⣀⣀⣀⣀⣀⣀⣀⣸                         
+ └┬───────┬───────┬──────┬───────┬▶
+  0       1       2      3       4 
+
+stderr:
+<empty>

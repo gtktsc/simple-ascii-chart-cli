@@ -1,0 +1,9 @@
+$ simple-ascii-chart --method heatmap --input '[[0,1],[2,1]]' --options '{"rows":["background worker","public api"],"columns":["north america","europe"],"levels":[{"value":0,"symbol":"·","label":"none"},{"value":1,"symbol":"░","label":"low"},{"value":2,"symbol":"▓","label":"high"}]}'
+exit code: 0
+stdout:
+                   north america  europe
+background worker        ·          ░
+public api               ▓          ░
+
+stderr:
+<empty>

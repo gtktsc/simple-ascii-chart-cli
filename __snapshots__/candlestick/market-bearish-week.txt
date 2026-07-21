@@ -1,0 +1,20 @@
+$ simple-ascii-chart --method candlestick --input '[[1,20,21,16,17],[2,17,18,13,14],[3,14,15,10,11]]' --options '{"title":"Bearish week","width":30,"height":9}'
+exit code: 0
+stdout:
+
+Bearish week                      
+  ▲                               
+  ││                              
+  │█                              
+  │█              │               
+17┤█              █               
+  ││              █             │ 
+14┤               █             █ 
+  │               │             █ 
+11┤                             █ 
+  │                             │ 
+  └┬──────────────┬─────────────┬▶
+   1              2             3 
+
+stderr:
+<empty>

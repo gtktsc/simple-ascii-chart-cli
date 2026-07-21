@@ -24,6 +24,8 @@ With axis positioning:
 
 ## Installation
 
+Requires Node.js 22 or newer, matching `simple-ascii-chart@6`.
+
 Install globally:
 
 ```bash
@@ -73,10 +75,46 @@ simple-ascii-chart --input '[[1, 2], [2, 3], [3, 4]]' --title "Sample Chart"
 
 Compatibility alias: `simple-ascii-chart-cli` is also available.
 
+### API methods
+
+`--method` selects the `simple-ascii-chart` runtime export. It defaults to `plot`, so existing
+commands keep working.
+
+| Method | `--input` | `--options` | Output |
+|---|---|---|---|
+| `plot` | Numeric coordinates | `Settings` object | Chart text |
+| `renderChart` | Complete `ChartSpec`, or a series array | Remaining `ChartSpec` fields | Chart text |
+| `candlestick` | Complete `CandlestickSpec`, or OHLC data | Remaining spec fields | Chart text |
+| `heatmap` | Complete `HeatmapSpec`, or matrix data | Remaining spec fields | Chart text |
+| `sparkline` | Number/null array | `SparklineOptions` | Sparkline text |
+| `histogram` | Raw samples or `[x,count]` buckets | `HistogramOptions` | Normalized JSON buckets |
+
+For one-spec methods, object input is a complete spec. Array input is wrapped as `series` for
+`renderChart` and `data` for `candlestick`/`heatmap`; `--options` supplies other spec fields. Input
+fields override duplicate fields in `--options`.
+
+```bash
+simple-ascii-chart --method renderChart \
+  --input '[{"id":"revenue","data":[["Jan",2],["Feb",4]],"mode":"bar"}]' \
+  --options '{"title":"Quarterly","xAxis":{"scale":"band"},"width":30,"height":8}'
+
+simple-ascii-chart --method candlestick \
+  --input '[[1,10,13,9,12],[2,12,14,10,11]]' \
+  --options '{"title":"OHLC","width":24,"height":8}'
+
+simple-ascii-chart --method heatmap \
+  --input '[["ok","warn"],["warn","ok"]]' \
+  --options '{"rows":["api","worker"],"levels":[{"value":"ok","symbol":"."},{"value":"warn","symbol":"!"}]}'
+
+simple-ascii-chart --method sparkline --input '[1,2,null,4]'
+simple-ascii-chart --method histogram --input '[1,1,2,2,2,4]' --options '{"binCount":3}'
+```
+
 ### CLI Options
 
 | Option            | Alias | Type     | Description                                                                                           |
 |-------------------|-------|----------|-------------------------------------------------------------------------------------------------------|
+| `--method`        |       | string   | API method: `plot`, `renderChart`, `candlestick`, `heatmap`, `sparkline`, or `histogram`.             |
 | `--input`         | `-i`  | string   | Inline input payload (JSON by default).                                                               |
 | `--input-file`    |       | string   | Read static input from a file path.                                                                   |
 | `--format`        |       | string   | Static input format: `json`, `csv`, `tsv`, `space`. Auto-detected when omitted.                      |
@@ -91,9 +129,10 @@ Compatibility alias: `simple-ascii-chart-cli` is also available.
 | `--series`        |       | number   | Stream series count (`1` or `2`).                                                                     |
 | `--passthrough`   |       | boolean  | Forward streamed stdin lines to stdout while plotting.                                                 |
 | `--plot-output`   |       | string   | Plot destination stream: `stdout` or `stderr`.                                                        |
-| `--options`       | `-o`  | string   | Additional plot settings as JSON.                                                                     |
-| `--width`         | `-w`  | number   | Plot width.                                                                                           |
+| `--options`       | `-o`  | string   | Plot settings, method options, or remaining spec fields as JSON.                                       |
+| `--width`         | `-w`  | string   | Positive plot width or `auto`.                                                                        |
 | `--height`        | `-h`  | number   | Plot height.                                                                                          |
+| `--aspect-ratio`  |       | number   | Physical width-to-height ratio used to derive height.                                                 |
 | `--title`         | `-t`  | string   | Plot title.                                                                                           |
 | `--xLabel`        |       | string   | X axis label.                                                                                         |
 | `--yLabel`        |       | string   | Y axis label.                                                                                         |
@@ -102,6 +141,21 @@ Compatibility alias: `simple-ascii-chart-cli` is also available.
 | `--axisCenter`    |       | array    | Axis center coordinates (`--axisCenter 0 0`).                                                         |
 | `--yRange`        |       | array    | Y range (`--yRange 0 100`).                                                                           |
 | `--showTickLabel` |       | boolean  | Show axis tick labels.                                                                                |
+| `--hide-x-axis-ticks` |   | boolean  | Hide X ticks/labels while retaining the axis line.                                                     |
+| `--hide-y-axis-ticks` |   | boolean  | Hide Y ticks/labels while retaining the axis line.                                                     |
+| `--custom-x-axis-ticks` | | array    | Explicit numeric X tick values.                                                                       |
+| `--custom-y-axis-ticks` | | array    | Explicit numeric Y tick values.                                                                       |
+| `--renderer`      |       | string   | Plot backend: `ascii` or `braille`.                                                                   |
+| `--overflow`      |       | string   | Out-of-domain behavior: `clip` or `discard`.                                                          |
+| `--interpolation` |       | string   | Line interpolation: `step` or `linear`.                                                               |
+| `--bar-layout`    |       | string   | Bar layout: `overlap`, `grouped`, `stacked`, or `normalized`.                                         |
+| `--coloring`      |       | string   | Dynamic coloring configuration as JSON.                                                               |
+| `--value-labels`  |       | string   | Bar value labels as `true`, `false`, or a JSON object.                                                |
+| `--x-axis`        |       | string   | Structured X-axis configuration as JSON.                                                              |
+| `--y-axis`        |       | string   | Structured Y-axis configuration as JSON.                                                              |
+| `--title-color`   |       | string   | ANSI title color, including version 6 bright colors.                                                  |
+| `--border-color`  |       | string   | ANSI border color.                                                                                    |
+| `--background-color` |    | string   | ANSI background-glyph color.                                                                          |
 | `--thresholds`    |       | array    | JSON object/array string or tokenized JSON objects (`'{"y":2}'`, `'[{"y":2}]'`, `'{"y":2}' '{"x":3}'`). |
 | `--points`        |       | array    | JSON object/array string or tokenized JSON objects (`'{"x":1,"y":2}'`, `'[{"x":1,"y":2}]'`).         |
 | `--legend`        |       | string   | Legend settings in JSON format.                                                                       |
@@ -275,6 +329,16 @@ plot(
 ## Examples
 
 This README includes various examples with plots for titles, multi-series data, axis labels, area filling, custom symbols, and more.
+
+### Snapshot catalog
+
+The repository also contains 224 executable CLI usage examples covering every public method.
+Definitions live in `src/examples/`; exact command, exit code, stdout, and stderr snapshots live in grouped `__snapshots__/` folders.
+
+```bash
+npm run snapshots:generate
+npm test -- --runInBand
+```
 
 For any questions or additional details, see the [documentation](https://simple-ascii-chart.vercel.app/).
 

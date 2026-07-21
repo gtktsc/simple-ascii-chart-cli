@@ -1,0 +1,21 @@
+$ simple-ascii-chart --method renderChart --input '{"title":"two lines","width":32,"height":8,"renderer":"braille","legend":{"position":"bottom","series":true},"series":[{"id":"api","data":[[0,2],[1,5],[2,3]]},{"id":"db","data":[[0,4],[1,2],[2,6]]}]}'
+exit code: 0
+stdout:
+
+two lines                          
+ ▲                                 
+6┤                               ⡏ 
+ │                               ⡇ 
+5┤               ⢸⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⡇ 
+4┤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣸               ⡇ 
+ │               ⢸               ⡇ 
+3┤               ⢸               ⣇ 
+ │               ⢸               ⡇ 
+2┤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣸⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡇ 
+ └┬───────────────┬──────────────┬▶
+  0               1              2 
+█ api                              
+█ db                               
+
+stderr:
+<empty>

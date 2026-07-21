@@ -1,0 +1,7 @@
+$ simple-ascii-chart --method heatmap --input '[[1]]' --options '{"levels":[{"value":0,"symbol":"·","label":"none"},{"value":1,"symbol":"░","label":"low"},{"value":2,"symbol":"▓","label":"high"}]}'
+exit code: 0
+stdout:
+░
+
+stderr:
+<empty>

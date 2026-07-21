@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,20],[1,45],[2,65],[3,85]]' --width 36 --height 9 --renderer ascii --thresholds '[{"y":30,"label":"warn","color":"ansiYellow"},{"y":70,"label":"critical","color":"ansiRed"}]'
+exit code: 0
+stdout:
+
+  ▲                                     
+85┤                                  ┏━ 
+  │                                  ┃  
+65┤\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m\x1b[31m━\x1b[0m
+  │                      ┃              
+  │                      ┃              
+45┤           ┏━━━━━━━━━━┛              
+  │           ┃                         
+  │\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m\x1b[33m━\x1b[0m
+20┤━━━━━━━━━━━┛                         
+  └┬───────────┬──────────┬───────────┬▶
+   0           1          2           3 
+
+stderr:
+<empty>

@@ -1,0 +1,18 @@
+$ simple-ascii-chart --method plot --input '[[0,3],[1,7],[2,5],[3,9]]' --width 36 --height 9 --renderer braille --mode bar --value-labels true
+exit code: 0
+stdout:
+
+ ▲                                    9
+9┤            7                      ⢸ 
+ │            ⡀                      ⢸ 
+7┤            ⡇          5           ⢸ 
+ │            ⡇          ⢀           ⢸ 
+5┤3           ⡇          ⢸           ⢸ 
+3┤⡄           ⡇          ⢸           ⢸ 
+ │⡇           ⡇          ⢸           ⢸ 
+ │⡇           ⡇          ⢸           ⢸ 
+ ├───────────┬──────────┬───────────┬─▶
+ 0           1          2           3  
+
+stderr:
+<empty>

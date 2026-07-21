@@ -6,7 +6,7 @@ module.exports = {
   collectCoverage: true,
   // CLI behavior is exercised via spawned-process integration tests; these files
   // scope instrumentation coverage to directly imported unit-tested modules.
-  collectCoverageFrom: ['src/options.ts', 'src/validators.ts'],
+  collectCoverageFrom: ['src/cli/options.ts', 'src/cli/validators.ts'],
   coverageThreshold: {
     global: {
       branches: 98,
