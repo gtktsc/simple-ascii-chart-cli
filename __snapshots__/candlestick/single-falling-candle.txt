@@ -1,0 +1,17 @@
+$ simple-ascii-chart --method candlestick --input '[[1,7,8,4,5]]' --options '{"width":18,"height":7}'
+exit code: 0
+stdout:
+
+ ▲                   
+ ││                  
+ │█                  
+ │█                  
+ │█                  
+5┤█                  
+ ││                  
+ ││                  
+ └┬─────────────────▶
+  1                  
+
+stderr:
+<empty>

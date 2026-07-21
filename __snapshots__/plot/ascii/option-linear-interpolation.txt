@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,1],[1,8],[2,3],[3,9],[4,2]]' --width 36 --height 9 --renderer ascii --interpolation linear
+exit code: 0
+stdout:
+
+ ▲                                     
+9┤                         ┏┓          
+8┤        ┏┓              ┏┛┗━┓        
+ │      ┏━┛┗━┓          ┏━┛   ┗┓       
+ │     ┏┛    ┗━┓       ┏┛      ┗┓      
+ │    ┏┛       ┗┓    ┏━┛        ┗┓     
+ │   ┏┛         ┗━┓ ┏┛           ┗━┓   
+3┤ ┏━┛            ┗━┛              ┗┓  
+2┤┏┛                                ┗━ 
+1┤┛                                    
+ └┬────────┬────────┬───────┬────────┬▶
+  0        1        2       3        4 
+
+stderr:
+<empty>

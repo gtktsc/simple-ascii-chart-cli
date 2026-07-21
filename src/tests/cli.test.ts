@@ -3,6 +3,8 @@ import * as fs from 'fs/promises';
 import * as os from 'os';
 import path from 'path';
 
+import { registerCliUsageSnapshotTests } from './cli-usage-snapshots';
+
 type CliResult = {
   code: number | null;
   stdout: string;
@@ -548,6 +550,181 @@ describe('plotter script', () => {
     expect(verbose.stderr).toContain('Error: Invalid --options JSON');
   });
 
+  it('lists every simple-ascii-chart runtime method in help', async () => {
+    const output = await runCli(['--help']);
+
+    expect(output.code).toBe(0);
+    expect(output.stdout).toContain('--method');
+    for (const method of [
+      'plot',
+      'renderChart',
+      'candlestick',
+      'heatmap',
+      'sparkline',
+      'histogram',
+    ]) {
+      expect(output.stdout).toContain(method);
+    }
+  });
+
+  it('renders structured renderChart input with options merged into the spec', async () => {
+    const output = await runCli([
+      '--method',
+      'renderChart',
+      '--input',
+      JSON.stringify([
+        { id: 'revenue', name: 'Revenue', data: [['Jan', 2], ['Feb', 4]], mode: 'bar' },
+        { id: 'target', name: 'Target', data: [['Jan', 3], ['Feb', 3]], mode: 'line' },
+      ]),
+      '--options',
+      JSON.stringify({
+        title: 'Quarterly',
+        width: 24,
+        height: 8,
+        xAxis: { scale: 'band' },
+        legend: { position: 'bottom', series: true },
+      }),
+    ]);
+
+    expect(output.code).toBe(0);
+    expect(output.stderr).toBe('');
+    expect(stripAnsi(output.stdout)).toContain('Quarterly');
+    expect(stripAnsi(output.stdout)).toContain('Revenue');
+  });
+
+  it('accepts a complete object spec and gives input fields precedence', async () => {
+    const output = await runCli([
+      '--method',
+      'renderChart',
+      '--input',
+      JSON.stringify({
+        title: 'Input title',
+        width: 20,
+        height: 8,
+        series: [{ id: 'cpu', data: [[1, 2], [2, 4]] }],
+      }),
+      '--options',
+      '{"title":"Options title"}',
+    ]);
+
+    expect(output.code).toBe(0);
+    expect(output.stderr).toBe('');
+    expect(stripAnsi(output.stdout)).toContain('Input title');
+    expect(stripAnsi(output.stdout)).not.toContain('Options title');
+  });
+
+  it('renders candlestick data with options mapped into its spec', async () => {
+    const output = await runCli([
+      '--method',
+      'candlestick',
+      '--input',
+      '[[1,10,13,9,12],[2,12,14,10,11]]',
+      '--options',
+      '{"title":"OHLC","width":20,"height":8}',
+    ]);
+
+    expect(output.code).toBe(0);
+    expect(output.stderr).toBe('');
+    expect(stripAnsi(output.stdout)).toContain('OHLC');
+  });
+
+  it('renders heatmap data with levels mapped from options', async () => {
+    const output = await runCli([
+      '--method',
+      'heatmap',
+      '--input',
+      '[["ok","warn"],["warn","ok"]]',
+      '--options',
+      JSON.stringify({
+        title: 'Status',
+        rows: ['api', 'worker'],
+        columns: ['now', 'next'],
+        levels: [
+          { value: 'ok', symbol: '.', label: 'OK' },
+          { value: 'warn', symbol: '!', label: 'Warning' },
+        ],
+        legend: true,
+      }),
+    ]);
+
+    expect(output.code).toBe(0);
+    expect(output.stderr).toBe('');
+    expect(stripAnsi(output.stdout)).toContain('Status');
+    expect(stripAnsi(output.stdout)).toContain('worker');
+    expect(stripAnsi(output.stdout)).toContain('Warning');
+  });
+
+  it('renders sparkline values and maps sparkline options', async () => {
+    const output = await runCli([
+      '--method',
+      'sparkline',
+      '--input',
+      '[1,2,null,4]',
+      '--options',
+      '{"symbols":{"empty":"·"}}',
+    ]);
+
+    expect(output.code).toBe(0);
+    expect(output.stderr).toBe('');
+    expect(stripAnsi(output.stdout)).toContain('·');
+    expect(stripAnsi(output.stdout).trim()).toHaveLength(4);
+  });
+
+  it('emits histogram output as JSON and maps binCount', async () => {
+    const output = await runCli([
+      '--method',
+      'histogram',
+      '--input',
+      '[1,1,2,2,2,4]',
+      '--options',
+      '{"binCount":3}',
+    ]);
+
+    expect(output.code).toBe(0);
+    expect(output.stderr).toBe('');
+    expect(JSON.parse(output.stdout)).toEqual([
+      [1.5, 2],
+      [2.5, 3],
+      [3.5, 1],
+    ]);
+  });
+
+  it('accepts null plot gaps and new plot flags', async () => {
+    const output = await runCli([
+      '--method',
+      'plot',
+      '--input',
+      '[[1,1],[2,null],[3,3]]',
+      '--renderer',
+      'braille',
+      '--interpolation',
+      'linear',
+      '--overflow',
+      'clip',
+      '--aspect-ratio',
+      '2',
+      '--width',
+      'auto',
+      '--hide-x-axis-ticks',
+      '--title-color',
+      'ansiBrightCyan',
+      '--title',
+      'Modern plot',
+    ]);
+
+    expect(output.code).toBe(0);
+    expect(output.stderr).toBe('');
+    expect(stripAnsi(output.stdout)).toContain('Modern plot');
+    expect(output.stdout).toContain('\u001b[96m');
+  });
+
+  it('rejects non-plot methods in stream mode', async () => {
+    const output = await runCli(['--stream', '--method', 'sparkline'], { stdin: '1\n2\n' });
+
+    expect(output.code).toBe(1);
+    expect(output.stderr).toContain('--stream is only supported with --method plot');
+  });
+
   it('keeps deterministic static output for snapshot regression checks', async () => {
     const output = await runCli([
       '--input',
@@ -564,4 +741,6 @@ describe('plotter script', () => {
     expect(output.stderr).toBe('');
     expect(stripAnsi(output.stdout)).toMatchSnapshot();
   });
+
+  registerCliUsageSnapshotTests(runCli);
 });

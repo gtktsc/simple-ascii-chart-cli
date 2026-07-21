@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,2],[1,null],[2,null],[3,6],[4,3]]' --width 36 --height 9 --renderer ascii
+exit code: 0
+stdout:
+
+ ▲                                     
+6┤                          ━━━━━━━━┓  
+ │                                  ┃  
+ │                                  ┃  
+ │                                  ┃  
+ │                                  ┃  
+ │                                  ┃  
+3┤                                  ┗━ 
+ │                                     
+2┤━                                    
+ └┬─────────────────────────┬────────┬▶
+  0                         3        4 
+
+stderr:
+<empty>

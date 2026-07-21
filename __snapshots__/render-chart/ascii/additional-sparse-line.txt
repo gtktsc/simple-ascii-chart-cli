@@ -1,0 +1,22 @@
+$ simple-ascii-chart --method renderChart --input '{"title":"additional sparse line","series":[{"id":"requests","data":[[0,2],[1,null],[2,7],[3,4],[4,9]]}],"width":38,"height":10,"renderer":"ascii","legend":{"position":"bottom","series":true}}'
+exit code: 0
+stdout:
+
+additional sparse line                   
+ ▲                                       
+9┤                                    ┏━ 
+ │                                    ┃  
+ │                                    ┃  
+7┤                   ━━━━━━━━┓        ┃  
+ │                           ┃        ┃  
+ │                           ┃        ┃  
+4┤                           ┗━━━━━━━━┛  
+ │                                       
+ │                                       
+2┤━                                      
+ └┬──────────────────┬────────┬────────┬▶
+  0                  2        3        4 
+█ requests                               
+
+stderr:
+<empty>

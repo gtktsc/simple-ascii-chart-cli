@@ -1,4 +1,4 @@
-import { preparePlotOptions } from '../options';
+import { preparePlotOptions } from '../cli/options';
 
 describe('preparePlotOptions', () => {
   it('maps debugMode and mode from direct CLI fields', () => {
@@ -91,5 +91,74 @@ describe('preparePlotOptions', () => {
       'Ignoring invalid --thresholds payload. Use JSON object/array (e.g. {"y":2} or [{"y":2}]).',
       'Ignoring invalid --points payload. Use JSON object/array (e.g. {"x":1,"y":2} or [{"x":1,"y":2}]).',
     ]);
+  });
+
+  it('maps every new scalar and structured plot setting', () => {
+    const settings = preparePlotOptions({
+      width: 'auto',
+      aspectRatio: 2.5,
+      overflow: 'clip',
+      renderer: 'braille',
+      hideXAxisTicks: true,
+      hideYAxisTicks: true,
+      customXAxisTicks: ['1', 2],
+      customYAxisTicks: [0, '10'],
+      titleColor: 'ansiBrightCyan',
+      borderColor: 'ansiBrightBlue',
+      backgroundColor: 'ansiBrightBlack',
+      interpolation: 'linear',
+      coloring: '{"thresholds":[{"value":5,"belowColor":"ansiBlue","aboveColor":"ansiRed"}]}',
+      barLayout: 'grouped',
+      valueLabels: '{"color":"ansiGreen"}',
+      xAxis: '{"domain":[0,10],"ticks":[0,5,10]}',
+      yAxis: '{"domain":[0,20]}',
+    });
+
+    expect(settings).toMatchObject({
+      width: 'auto',
+      aspectRatio: 2.5,
+      overflow: 'clip',
+      renderer: 'braille',
+      hideXAxisTicks: true,
+      hideYAxisTicks: true,
+      customXAxisTicks: [1, 2],
+      customYAxisTicks: [0, 10],
+      titleColor: 'ansiBrightCyan',
+      borderColor: 'ansiBrightBlue',
+      backgroundColor: 'ansiBrightBlack',
+      interpolation: 'linear',
+      coloring: {
+        thresholds: [{ value: 5, belowColor: 'ansiBlue', aboveColor: 'ansiRed' }],
+      },
+      barLayout: 'grouped',
+      valueLabels: { color: 'ansiGreen' },
+      xAxis: { domain: [0, 10], ticks: [0, 5, 10] },
+      yAxis: { domain: [0, 20] },
+    });
+  });
+
+  it('rejects malformed structured plot settings with option-specific errors', () => {
+    expect(() => preparePlotOptions({ coloring: '{broken' })).toThrow(
+      'Invalid --coloring JSON',
+    );
+    expect(() => preparePlotOptions({ xAxis: '[]' })).toThrow(
+      'Invalid --x-axis JSON: expected an object',
+    );
+  });
+
+  it('ignores invalid direct numeric arrays, widths, and colors', () => {
+    expect(
+      preparePlotOptions({
+        width: 'invalid',
+        customXAxisTicks: ['invalid'],
+        customYAxisTicks: [Number.POSITIVE_INFINITY],
+        titleColor: 'cyan',
+        borderColor: 'blue',
+        backgroundColor: 'black',
+      }),
+    ).toEqual({});
+
+    expect(preparePlotOptions({ width: -1 })).toEqual({});
+    expect(preparePlotOptions({ width: '20' })).toEqual({ width: 20 });
   });
 });

@@ -1,0 +1,12 @@
+$ simple-ascii-chart --method heatmap --input '[["pass","warn"],["pass","pass"],["fail","warn"]]' --options '{"rows":["linux","macos","windows"],"columns":["x64","arm64"],"levels":[{"value":"pass","symbol":"✓","label":"passing","color":"ansiGreen"},{"value":"warn","symbol":"!","label":"warning","color":"ansiYellow"},{"value":"fail","symbol":"×","label":"failed","color":"ansiRed"}],"legend":true}'
+exit code: 0
+stdout:
+         x64  arm64
+linux     \x1b[32m✓\x1b[0m     \x1b[33m!\x1b[0m
+macos     \x1b[32m✓\x1b[0m     \x1b[32m✓\x1b[0m
+windows   \x1b[31m×\x1b[0m     \x1b[33m!\x1b[0m
+
+\x1b[32m✓\x1b[0m passing  \x1b[33m!\x1b[0m warning  \x1b[31m×\x1b[0m failed
+
+stderr:
+<empty>

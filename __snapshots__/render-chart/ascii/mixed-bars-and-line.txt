@@ -1,0 +1,21 @@
+$ simple-ascii-chart --method renderChart --input '{"title":"mixed bars and line","width":32,"height":8,"renderer":"ascii","legend":{"position":"bottom","series":true},"series":[{"id":"sales","mode":"bar","data":[[0,2],[1,5],[2,3]]},{"id":"target","mode":"line","data":[[0,4],[1,4],[2,4]]}]}'
+exit code: 0
+stdout:
+
+mixed bars and line                
+ ▲                █                
+5┤                █                
+ │                █                
+4┤━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+ │                █                
+ │                █              █ 
+3┤                █              █ 
+ │█               █              █ 
+2┤█               █              █ 
+ └┬───────────────┬──────────────┬▶
+  0               1              2 
+█ sales                            
+█ target                           
+
+stderr:
+<empty>

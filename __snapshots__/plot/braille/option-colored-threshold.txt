@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,25],[1,55],[2,72],[3,48],[4,91]]' --width 36 --height 9 --renderer braille --thresholds '{"y":75,"label":"alert","color":"ansiBrightRed"}'
+exit code: 0
+stdout:
+
+  ▲                                     
+91┤                                   ⡏ 
+  │                                   ⡇ 
+72┤\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m⢩⠭⠭⠭⠭⠭⠭⠭⠭⡍\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m\x1b[91m⠉\x1b[0m⡏ 
+  │                 ⢸        ⡇        ⡇ 
+55┤        ⢀⣀⣀⣀⣀⣀⣀⣀⣀⣸        ⡇        ⡇ 
+48┤        ⢸                 ⣇⣀⣀⣀⣀⣀⣀⣀⣀⡇ 
+  │        ⢸                            
+  │        ⢸                            
+25┤⣀⣀⣀⣀⣀⣀⣀⣀⣸                            
+  └┬────────┬────────┬───────┬────────┬▶
+   0        1        2       3        4 
+
+stderr:
+<empty>

@@ -1,0 +1,18 @@
+$ simple-ascii-chart --method plot --input '[[0,8],[1,5],[2,3],[3,1]]' --width 32 --height 8 --renderer braille
+exit code: 0
+stdout:
+
+ ▲                                 
+8┤⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⡇                      
+ │          ⡇                      
+ │          ⡇                      
+5┤          ⠓⠒⠒⠒⠒⠒⠒⠒⠒⠒⢲            
+ │                    ⢸            
+3┤                    ⠸⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⡄ 
+ │                               ⡇ 
+1┤                               ⣇ 
+ └┬─────────┬──────────┬─────────┬▶
+  0         1          2         3 
+
+stderr:
+<empty>

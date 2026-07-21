@@ -1,0 +1,20 @@
+$ simple-ascii-chart --method plot --input '[[0,2],[1,6],[2,4],[3,8]]' --width 36 --height 9 --renderer ascii --title 'Colored frame' --title-color ansiBrightCyan --border-color ansiBrightBlue
+exit code: 0
+stdout:
+
+\x1b[96mC\x1b[0m\x1b[96mo\x1b[0m\x1b[96ml\x1b[0m\x1b[96mo\x1b[0m\x1b[96mr\x1b[0m\x1b[96me\x1b[0m\x1b[96md\x1b[0m\x1b[96m \x1b[0m\x1b[96mf\x1b[0m\x1b[96mr\x1b[0m\x1b[96ma\x1b[0m\x1b[96mm\x1b[0m\x1b[96me\x1b[0m                          
+ ▲                                     
+8┤                                  ┏━ 
+ │                                  ┃  
+ │                                  ┃  
+6┤           ┏━━━━━━━━━━┓           ┃  
+ │           ┃          ┃           ┃  
+4┤           ┃          ┗━━━━━━━━━━━┛  
+ │           ┃                         
+ │           ┃                         
+2┤━━━━━━━━━━━┛                         
+ └┬───────────┬──────────┬───────────┬▶
+  0           1          2           3 
+
+stderr:
+<empty>

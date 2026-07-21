@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method plot --input '[[0,2],[1,5],[2,3],[3,7],[4,4]]' --width 32 --height 8 --renderer ascii --x-label day --y-label requests
+exit code: 0
+stdout:
+
+  ▲                                 
+ 7┤                      ┏━━━━━━━┓  
+r │                      ┃       ┃  
+e │                      ┃       ┃  
+q5┤       ┏━━━━━━━┓      ┃       ┃  
+u4┤       ┃       ┃      ┃       ┗━ 
+e │       ┃       ┃      ┃          
+s3┤       ┃       ┗━━━━━━┛          
+t2┤━━━━━━━┛                         
+s └┬───────┬───────┬──────┬───────┬▶
+   0       1       2      3       4 
+                 day                
+
+stderr:
+<empty>

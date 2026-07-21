@@ -1,0 +1,22 @@
+$ simple-ascii-chart --method renderChart --input '{"title":"additional filled trend","series":[{"id":"capacity","fillArea":true,"data":[[0,1],[1,4],[2,7],[3,5],[4,9]]}],"width":38,"height":10,"renderer":"ascii","legend":{"position":"bottom","series":true}}'
+exit code: 0
+stdout:
+
+additional filled trend                  
+ ▲                                       
+9┤                                    ██ 
+ │                                    ██ 
+7┤                  ██████████        ██ 
+ │                  ██████████        ██ 
+5┤                  ████████████████████ 
+ │                  ████████████████████ 
+4┤        ██████████████████████████████ 
+ │        ██████████████████████████████ 
+ │        ██████████████████████████████ 
+1┤██████████████████████████████████████ 
+ └┬────────┬─────────┬────────┬────────┬▶
+  0        1         2        3        4 
+█ capacity                               
+
+stderr:
+<empty>

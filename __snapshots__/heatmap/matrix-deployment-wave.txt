@@ -1,0 +1,13 @@
+$ simple-ascii-chart --method heatmap --input '[[1,2,0],[0,1,2],[2,0,1]]' --options '{"title":"Deployments","rows":["eu","us","apac"],"columns":["canary","half","full"],"levels":[{"value":0,"symbol":"·","label":"clear"},{"value":1,"symbol":"▒","label":"watch"},{"value":2,"symbol":"█","label":"alert"}],"legend":true}'
+exit code: 0
+stdout:
+Deployments
+      canary  half  full
+eu      ▒      █     ·
+us      ·      ▒     █
+apac    █      ·     ▒
+
+· clear  ▒ watch  █ alert
+
+stderr:
+<empty>

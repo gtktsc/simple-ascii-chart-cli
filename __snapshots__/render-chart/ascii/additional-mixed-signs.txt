@@ -1,0 +1,22 @@
+$ simple-ascii-chart --method renderChart --input '{"title":"additional mixed signs","yAxis":{"domain":[-10,10]},"series":[{"id":"balance","data":[[0,-8],[1,4],[2,-2],[3,9],[4,-5]]}],"width":38,"height":10,"renderer":"ascii","legend":{"position":"bottom","series":true}}'
+exit code: 0
+stdout:
+
+additional mixed signs                    
+  ▲                                       
+ 9┤                           ┏━━━━━━━━┓  
+  │                           ┃        ┃  
+  │                           ┃        ┃  
+ 4┤        ┏━━━━━━━━━┓        ┃        ┃  
+  │        ┃         ┃        ┃        ┃  
+-2┤        ┃         ┗━━━━━━━━┛        ┃  
+  │        ┃                           ┃  
+-5┤        ┃                           ┗━ 
+-8┤━━━━━━━━┛                              
+  │                                       
+  └┬────────┬─────────┬────────┬────────┬▶
+   0        1         2        3        4 
+█ balance                                 
+
+stderr:
+<empty>

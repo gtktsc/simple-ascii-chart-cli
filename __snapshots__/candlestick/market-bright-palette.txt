@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method candlestick --input '[[1,8,12,7,11],[2,11,13,9,10],[3,10,15,9,14]]' --options '{"width":30,"height":9,"risingColor":"ansiBrightGreen","fallingColor":"ansiBrightRed"}'
+exit code: 0
+stdout:
+
+  ▲                               
+  │                             │ 
+14┤                             ░ 
+  │               │             ░ 
+  ││              │             ░ 
+11┤░              █             ░ 
+10┤░              █             ░ 
+  │░              │             │ 
+  │░                              
+  ││                              
+  └┬──────────────┬─────────────┬▶
+   1              2             3 
+
+stderr:
+<empty>

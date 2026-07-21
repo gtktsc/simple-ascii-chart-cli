@@ -1,0 +1,22 @@
+$ simple-ascii-chart --method renderChart --input '{"title":"additional grouped categories","xAxis":{"scale":"band"},"barLayout":"grouped","series":[{"id":"current","name":"Current","mode":"bar","data":[["Jan",4],["Feb",7],["Mar",5]]},{"id":"previous","name":"Previous","mode":"bar","data":[["Jan",3],["Feb",5],["Mar",6]]}],"width":38,"height":10,"renderer":"braille","legend":{"position":"bottom","series":true}}'
+exit code: 0
+stdout:
+
+additional grouped categories            
+ ▲                                       
+7┤                  ⢸                    
+6┤                  ⢸             ⡆      
+ │                  ⢸⢠           ⡄⡇      
+5┤                  ⢸⢸           ⡇⡇      
+4┤      ⡇           ⢸⢸           ⡇⡇      
+3┤      ⡇⡆          ⢸⢸           ⡇⡇      
+ │      ⡇⡇          ⢸⢸           ⡇⡇      
+ │      ⡇⡇          ⢸⢸           ⡇⡇      
+ │      ⡇⡇          ⢸⢸           ⡇⡇      
+ ├─────┬────────────┬───────────┬───────▶
+ │   Jan          Feb         Mar        
+█ Current                                
+█ Previous                               
+
+stderr:
+<empty>

@@ -1,0 +1,11 @@
+$ simple-ascii-chart --method heatmap --input '[["pass","pass","warn"],["pass","fail","warn"]]' --options '{"rows":["frontend","worker"],"columns":["unit","integration","e2e"],"levels":[{"value":"pass","symbol":"✓","label":"passing","color":"ansiGreen"},{"value":"warn","symbol":"!","label":"warning","color":"ansiYellow"},{"value":"fail","symbol":"×","label":"failed","color":"ansiRed"}],"legend":true}'
+exit code: 0
+stdout:
+          unit  integration  e2e
+frontend   \x1b[32m✓\x1b[0m         \x1b[32m✓\x1b[0m        \x1b[33m!\x1b[0m
+worker     \x1b[32m✓\x1b[0m         \x1b[31m×\x1b[0m        \x1b[33m!\x1b[0m
+
+\x1b[32m✓\x1b[0m passing  \x1b[33m!\x1b[0m warning  \x1b[31m×\x1b[0m failed
+
+stderr:
+<empty>

@@ -1,0 +1,19 @@
+$ simple-ascii-chart --method candlestick --input '[[1,40,55,35,50],[2,50,65,45,60]]' --options '{"width":28,"height":9,"yAxis":{"domain":[0,100]}}'
+exit code: 0
+stdout:
+
+  ▲                             
+  │                             
+  │                             
+  │                             
+60┤                           ░ 
+50┤░                          ░ 
+  │░                            
+  │                             
+  │                             
+  │                             
+  └┬──────────────────────────┬▶
+   1                          2 
+
+stderr:
+<empty>

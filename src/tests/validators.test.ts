@@ -1,15 +1,16 @@
+import { Formatter, FormatterHelpers, Legend, Symbols } from 'simple-ascii-chart';
+
 import {
   validateAxisCenter,
   validateColors,
-  validateYRange,
-  validateThresholds,
-  validatePoints,
-  validateLegend,
   validateFormatter,
+  validateLegend,
   validateLineFormatter,
+  validatePoints,
   validateSymbols,
-} from '../validators';
-import { Legend, Formatter, Symbols, FormatterHelpers } from 'simple-ascii-chart';
+  validateThresholds,
+  validateYRange,
+} from '../cli/validators';
 
 describe('Utility Functions Tests', () => {
   describe('validateAxisCenter', () => {
@@ -39,10 +40,18 @@ describe('Utility Functions Tests', () => {
 
     it('returns undefined for unsupported color strings', () => {
       expect(validateColors(['red', 'green'])).toBeUndefined();
+      expect(validateColors([1, 'red'])).toBeUndefined();
     });
 
     it('returns a single ANSI color if input is a valid ANSI color string', () => {
       expect(validateColors('ansiRed')).toEqual('ansiRed');
+    });
+
+    it('accepts ANSI bright colors added in version 6', () => {
+      expect(validateColors(['ansiBrightRed', 'ansiBrightCyan'])).toEqual([
+        'ansiBrightRed',
+        'ansiBrightCyan',
+      ]);
     });
 
     it('returns undefined for missing color input', () => {
@@ -152,6 +161,18 @@ describe('Utility Functions Tests', () => {
       expect(validateLegend('{"series":["a","b"]}')).toEqual({ series: ['a', 'b'] });
     });
 
+    it('accepts automatic legend placement', () => {
+      expect(
+        validateLegend(
+          '{"position":"auto","series":["cpu"],"color":"ansiBrightWhite"}',
+        ),
+      ).toEqual({
+        position: 'auto',
+        series: ['cpu'],
+        color: 'ansiBrightWhite',
+      });
+    });
+
     it('accepts legend with string-based labels', () => {
       expect(
         validateLegend('{"series":"series-a","points":"p","thresholds":"warn","position":"left"}'),
@@ -165,6 +186,12 @@ describe('Utility Functions Tests', () => {
 
     it('rejects invalid position even when series is provided', () => {
       expect(validateLegend('{"position":"middle","series":["cpu"]}')).toBeUndefined();
+    });
+
+    it('rejects empty legends and invalid legend colors', () => {
+      expect(validateLegend('{}')).toBeUndefined();
+      expect(validateLegend('{"color":"red"}')).toBeUndefined();
+      expect(validateLegend('{"color":1}')).toBeUndefined();
     });
 
     it('rejects non-object and malformed legend payloads', () => {
@@ -250,6 +277,18 @@ describe('Utility Functions Tests', () => {
       });
     });
 
+    it('accepts version 6 candlestick, annotation, and ellipsis symbols', () => {
+      expect(
+        validateSymbols(
+          '{"candlestick":{"wick":"|"},"annotations":{"span":"░"},"ellipsis":"…"}',
+        ),
+      ).toEqual({
+        candlestick: { wick: '|' },
+        annotations: { span: '░' },
+        ellipsis: '…',
+      });
+    });
+
     it('rejects non-object symbol payloads and invalid field types', () => {
       expect(validateSymbols('[]')).toBeUndefined();
       expect(validateSymbols('{"axis":"-"}')).toBeUndefined();
@@ -259,6 +298,9 @@ describe('Utility Functions Tests', () => {
       expect(validateSymbols('{"background":1}')).toBeUndefined();
       expect(validateSymbols('{"border":1}')).toBeUndefined();
       expect(validateSymbols('{"point":1}')).toBeUndefined();
+      expect(validateSymbols('{"candlestick":"|"}')).toBeUndefined();
+      expect(validateSymbols('{"annotations":"|"}')).toBeUndefined();
+      expect(validateSymbols('{"ellipsis":1}')).toBeUndefined();
     });
   });
 });
