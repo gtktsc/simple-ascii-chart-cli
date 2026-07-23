@@ -342,6 +342,10 @@ npm test -- --runInBand
 
 For any questions or additional details, see the [documentation](https://simple-ascii-chart.vercel.app/).
 
+## Contributing
+
+Contributions are welcome. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for setup and pull request guidance, and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community expectations.
+
 ## Support
 
 If this project helps you, consider supporting my open-source work:
